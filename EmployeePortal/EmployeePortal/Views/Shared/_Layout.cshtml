@@ -1,0 +1,30 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/CSS/StyleSheet.css" rel="stylesheet" />
+    <link href="~/CSS/StyleSheet.css" rel="stylesheet" asp-append-version="true" />
+</head>
+<body>
+
+    <header style="text-align:center;color:aqua;background-color:fuchsia"><h2>Welcome To ITact-Solutions.</h2></header>
+    
+    <div>
+        <div>
+            <ul>
+                <li>
+                    @Html.ActionLink("GetAll", "GetAll", "Employees")
+                </li>
+                <li>
+                    @Html.ActionLink("Create", "Create", "Employees")
+                </li>
+            </ul>
+        </div>
+        @RenderBody()
+    </div>
+    <footer style="text-align:center;color:aqua;background-color:fuchsia"><h2>Thank-You For Visiting Our Site.</h2></footer>
+</body>
+</html>

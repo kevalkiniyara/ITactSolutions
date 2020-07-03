@@ -1,0 +1,127 @@
+﻿@model IEnumerable<EmployeePortal.Models.EmployeeModel>
+
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .center
+    {
+        margin: auto;
+        font-size: medium;
+        width: 20%;
+        padding: 10px;
+    }
+
+    input[type=text], select
+    {
+        width: 100%;
+        padding: 6px 10px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=submit]
+    {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 7px 10px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .Table
+    {
+        width: 100%;
+        padding: 7px 10px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    input[type=submit]:hover
+    {
+        background-color: #45a049;
+    }
+
+    div
+    {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 5px;
+    }
+
+    th
+    {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    th
+    {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+@*ViewBag Topic:*@
+<label>TotalEmployee:</label>@ViewBag.TotalEmployee<br>
+@*ViewData Topics*@
+    @foreach (var employee in ViewData["Employees"] as IList<EmployeePortal.Models.EmployeeModel>)
+    {
+        <label>EmployeeName:</label>@employee.EmployeeName<br />
+    
+    }
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MobileNumber)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNumber)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "UpdateDetail", new { id=item.EmployeeId})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
