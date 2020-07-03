@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script src="numeral.min.js"></script>
+        <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script> -->
+    </head>
+    <body>
+        <script>
+            var myNumeral = numeral(1000);
+            var value = myNumeral.value();
+            console.log(value);
+
+            var string = numeral(1000).format('0,0');
+            console.log(string);
+
+            var number = numeral(1000);
+            var added = number.add(10);
+            console.log(added);
+
+            var number = numeral();
+            var setData=number.set(1000);
+            console.log(setData);
+
+            var number = numeral(1000),
+            value = 100;
+            var difference = number.difference(value);
+            console.log(difference);
+
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+var a=3.144455;
+console.log(a);
+var b=123e5;
+console.log(b);
+var c="20";
+var d="20";
+console.log(c+d);
+console.log(a+b);
+console.log(c/d);   
+var e=0xFF;
+console.log(e);
+document.writeln(a.toString());
+var f=a.toExponential(4);
+console.log(f);
+console.log(a.toFixed(0));
+console.log(Number(new Date("06-03-1998")));
+var d=new Date();
+document.writeln(Math.round(5.7));
+
+document.writeln(Math.pow(8,3));
+document.writeln(Math.sqrt(64));
+document.writeln(Math.abs(-64));
