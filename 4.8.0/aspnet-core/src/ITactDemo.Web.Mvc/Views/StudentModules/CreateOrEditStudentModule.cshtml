@@ -1,0 +1,109 @@
+﻿@using ITactDemo.Web.Models.Common.Modals
+@using Abp.Application.Services.Dto
+@using ITactDemo.Students
+@using System
+
+@model ITactDemo.Web.Models.StudentModules.CreateOrUpdateStudentModuleViewModel
+
+@section styles{
+    <environment names="Development">
+
+    </environment>
+}
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/view-resources/Views/StudentModules/_CreateOrUpdateStudentModule.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+
+    </environment>
+}
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="body">
+                <form name="StudentModuleForm" id="StudentModuleForm" role="form">
+                    @Html.Hidden("Id", Model.StudentModule.Id, new { @id = "Id" })
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <label for="firstName">@L("StudentName") <span class="text-danger">*</span></label>
+                                    @Html.TextBox("StudentName", Model.StudentModule.StudentName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                                    <label for="Gender">@L("Gender")</label>
+                                    <input type="radio" id="male" name="Gender" value="Male" class="md-radiobtn" @(Model.StudentModule.Gender == "Male" ? "checked=\"checked\"" : "") checked>
+                                    <label for="male">Male</label>
+
+                                    <input type="radio" id="female" name="Gender" value="Female" class="md-radiobtn" @(Model.StudentModule.Gender == "Female" ? "checked=\"checked\"" : "")>
+                                    <label for="female">Female</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <label for="Standard">@L("Standard")</label>
+                                    @Html.DropDownList("Standard", Model.StandardList.Select(i => i.ToSelectListItem()), new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <label for="Country">@L("Country")</label>
+                                    @Html.DropDownList("CountryId", Model.CountryList.Select(i => i.ToSelectListItem()), "Select Country", new { @id = "Country", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <label for="State">@L("State")</label>
+                                    @if (Model.StudentModule.Id > 0)
+                                    {
+                                        @Html.DropDownList("StateId", Model.StateList.Select(i => i.ToSelectListItem()), "Select State", new { @id = "StateId", @class = "form-control" })
+                                    }
+                                    else
+                                    {
+                                        <select id="State" name="StateId" class="form-control"></select>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <label for="City">@L("City")</label>
+                                    @if (Model.StudentModule.Id > 0)
+                                    {
+                                        @Html.DropDownList("CityId", Model.CityList.Select(i => i.ToSelectListItem()), "Select City", new { @id = "CityId", @class = "form-control" })
+                                    }
+                                    else
+                                    {
+                                        <select id="City" name="CityId" class="form-control"></select>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" id="btnSave" class="btn btn-primary">@L("Save")</button>
+                    <button type="button" id="btnCancel" class="btn btn-danger">@L("Cancel")</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

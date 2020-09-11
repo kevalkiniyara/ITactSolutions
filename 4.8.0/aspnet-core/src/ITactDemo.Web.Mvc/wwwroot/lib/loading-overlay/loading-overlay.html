@@ -1,0 +1,98 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-spinner/paper-spinner.html">
+<link rel="import" href="../paper-spinner/paper-spinner-lite.html">
+
+<!--
+`loading-overlay`
+A (very) simple loading overlay
+
+It's a `paper-spinner` inside a container with `@apply(--layout-fit);`
+
+## Styling
+Custom property | Description | Default
+----------------|-------------|----------
+`--loading-overlay-spinner-layer-1-color` | applied to `--paper-spinner-layer-1-color` | (see `paper-spinner` default)
+`--loading-overlay-spinner-layer-2-color` | applied to `--paper-spinner-layer-2-color` | (see `paper-spinner` default)
+`--loading-overlay-spinner-layer-3-color` | applied to `--paper-spinner-layer-3-color` | (see `paper-spinner` default)
+`--loading-overlay-spinner-layer-4-color` | applied to `--paper-spinner-layer-4-color` | (see `paper-spinner` default)
+`--loading-overlay-spinner-stroke-width`  | applied to `--paper-spinner-stroke-width`  | (see `paper-spinner` default)
+`--loading-overlay-spinner-color`         | applied to `--paper-spinner-color` (only applicable if using lite)  | (see `paper-spinner-lite` default)
+
+
+@demo demo/index.html 
+-->
+
+<dom-module id="loading-overlay">
+	<template>
+		<style>
+			:host {
+				@apply(--layout-fit);
+				@apply(--layout-horizontal);
+				@apply(--layout-center-center);
+				background: var(--paper-grey-100);
+				z-index: 10000;
+			}
+
+			:host(:not([active])) {
+				display: none;
+			}
+
+			paper-spinner {
+				--paper-spinner-layer-1-color: var(--loading-overlay-spinner-layer-1-color);
+				--paper-spinner-layer-2-color: var(--loading-overlay-spinner-layer-2-color);
+				--paper-spinner-layer-3-color: var(--loading-overlay-spinner-layer-3-color);
+				--paper-spinner-layer-4-color: var(--loading-overlay-spinner-layer-4-color);
+				--paper-spinner-stroke-width: var(--loading-overlay-spinner-stroke-width);
+			}
+
+			paper-spinner-lite {
+				--paper-spinner-stroke-width: var(--loading-overlay-spinner-stroke-width);
+				--paper-spinner-color: var(--loading-overlay-spinner-color);
+			}
+
+		</style>
+		<template is="dom-if" if="[[lite]]">
+			<paper-spinner-lite active="[[active]]" alt="[[alt]]"></paper-spinner-lite>
+		</template>
+		<template is="dom-if" if="[[!lite]]">
+			<paper-spinner active="[[active]]" alt="[[alt]]"></paper-spinner>
+		</template>
+
+	</template>
+	<script>
+		Polymer({
+			is: 'loading-overlay',
+
+			properties: {
+
+				/**
+				 * Displays the spinner.
+				 */
+				active: {
+					type: Boolean,
+					value: false,
+					reflectToAttribute: true
+				},
+
+				/**
+				 * Alternative text content for accessibility support.
+				 * If alt is present, it will add an aria-label whose content matches alt when active.
+				 * If alt is not present, it will default to 'loading' as the alt value.
+				 */	
+				alt: {
+					type: String,
+					value: 'loading'
+				},
+
+				/**
+				 * Switches to paper-spinner-lite instead of paper-spinner
+				 */
+				lite: {
+					type: Boolean,
+					value: false
+				}	
+			}
+		});
+	</script>
+</dom-module>

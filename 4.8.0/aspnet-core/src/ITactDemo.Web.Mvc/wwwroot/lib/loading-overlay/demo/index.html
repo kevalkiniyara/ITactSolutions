@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <title>loading-overlay demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../paper-styles/paper-styles.html">
+
+    <link rel="import" href="../loading-overlay.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+      demo-snippet {
+        --demo-snippet-demo: {
+          position: relative;
+          min-height: 300px;
+        };
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+
+      <div>
+        <h3>Basic loading-overlay demo</h3>
+        <demo-snippet>
+          <template>
+            <loading-overlay active></loading-overlay>
+          </template>
+        </demo-snippet>
+      </div>
+
+      <div>
+        <h3>Custom loading-overlay demo</h3>
+        <demo-snippet>
+          <template>
+            <style is="custom-style">
+                loading-overlay.custom {
+                  --loading-overlay-spinner-stroke-width:  10px;
+                  --loading-overlay-spinner-layer-1-color: var(--paper-green-a400);
+                  --loading-overlay-spinner-layer-2-color: var(--paper-pink-a200);
+                  --loading-overlay-spinner-layer-3-color: var(--paper-green-a400);
+                  --loading-overlay-spinner-layer-4-color: var(--paper-pink-a200);
+                  background-color: black;
+                }
+            </style>
+            <loading-overlay class="custom" active></loading-overlay>
+          </template>
+        </demo-snippet>
+      </div>
+
+      <div>
+        <h3>Custom loading-overlay demo (lite)</h3>
+        <demo-snippet>
+          <template>
+            <style is="custom-style">
+                loading-overlay.custom-lite {
+                  --loading-overlay-spinner-color: var(--paper-pink-a100);
+                  background-color: var(--paper-green-a100);
+                }
+            </style>
+            <loading-overlay lite class="custom-lite" active></loading-overlay>
+          </template>
+        </demo-snippet>
+      </div>
+
+    </div>
+
+  </body>
+</html>

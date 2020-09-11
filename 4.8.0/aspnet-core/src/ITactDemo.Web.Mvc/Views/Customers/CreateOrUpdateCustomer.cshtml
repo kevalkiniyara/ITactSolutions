@@ -1,0 +1,136 @@
+﻿@using Abp.Application.Services.Dto
+@model ITactDemo.Web.Models.Customers.CreateOrUpdateCustomerViewModel
+
+@section Styles
+    {
+<environment names="Development">
+    <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+</environment>
+}
+
+@section Scripts
+    {
+    <environment names="Development">
+        <script src="~/view-resources/Views/Customers/_CreateOrUpdateCustomer.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+    </environment>
+}
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="body">
+                <form name="CustomerForm">
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label>@L("FirstName")</label>
+                            @Html.TextBox("FirstName", Model.Customer.FirstName, new { @class = "form-control" })
+                        </div>
+                        <div class="col-sm-6">
+                            <label>@L("LastName")</label>
+                            @Html.TextBox("LastName", Model.Customer.LastName, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label>@L("Email")</label>
+                            @Html.TextBox("Email", Model.Customer.Email, new { @class = "form-control" })
+                        </div>
+                        <div class="col-sm-6">
+                            <label>@L("BirthDate")</label>
+                            <input type="text" id="datepicker" name="BirthDate" value="@Model.Customer.BirthDate" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label>@L("PhoneNumber")</label>
+                            @Html.TextBox("PhoneNumber", Model.Customer.PhoneNumber, new { @class = "form-control" })
+                        </div>
+                        <div class="col-sm-6">
+                            <label>@L("AccountType")</label>
+                            @Html.DropDownList("AccountType", Model.AccountList.Select(i => i.ToSelectListItem()), new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label>@L("Gender")</label>
+                            <input type="radio" id="male" name="Gender" value="Male" class="md-radiobtn" @(Model.Customer.Gender == "Male" ? "checked=\"checked\"" : "") checked>
+                            <label for="male">Male</label>
+
+                            <input type="radio" id="female" name="Gender" value="Female" class="md-radiobtn" @(Model.Customer.Gender == "Female" ? "checked=\"checked\"" : "")>
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label>@L("Product")</label>
+                            @foreach (var product in Model.ProductList)
+                            {
+                                <div class="form-control">
+                                    <input type="checkbox" name="Product" id="Product_@product.Value" value="@product.Value" class="form-control chkHobbies" @(product.IsSelected ? "checked=\"checked\"" : "") />
+                                    <label class="form-check-label" for="Product_@product.Value">@product.DisplayText</label>
+                                </div>
+                            }
+                        </div>
+                        @if (Model.Customer.Id > 0)
+                        {
+                            <div class="col-sm-4">
+                                <input type="hidden" name="CustomerImage" id="CustomerImage" value="@Model.Customer.CustomerImage" />
+                                <img src="@Model.Customer.CustomerImagePic" height="50" id="customerImagePic" />
+                                <button id="removeImage" type="button">Remove</button>
+                            </div>
+
+
+                        }
+                        else
+                        {
+                            <div class="col-sm-4">
+                                <label>@L("CustomerImage")</label>
+                                <input type="hidden" name="CustomerImage" id="CustomerImage" value="@Model.Customer.CustomerImage" />
+                                <input type="file" class="form-control" id="customerimage" />
+                            </div>
+
+                        }
+
+                    </div>
+
+                        
+
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label>@L("Country")</label>
+                            @Html.DropDownList("CountryId", Model.CountryList.Select(i => i.ToSelectListItem()), new { @id = "Country", @class = "form-control" })
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="State">@L("State")</label>
+                            @if (Model.Customer.Id > 0)
+                            {
+                                @Html.DropDownList("StateId", Model.StateList.Select(i => i.ToSelectListItem()),"Select State", new { @id = "StateId", @class = "form-control" })
+                            }
+                            else
+                            {
+                                <select id="State" name="StateId" class="form-control"></select>
+                            }
+                        </div>
+                        <div class="col-sm-4">
+                            <label>@L("City")</label>
+                            @if (Model.Customer.Id > 0)
+                            {
+                                @Html.DropDownList("CityId", Model.CountryList.Select(i => i.ToSelectListItem()), new { @class = "form-control" })
+                            }
+                            else
+                            {
+                                <select id="City" name="CityId" class="form-control"></select>
+                            }
+                        </div>
+                    </div>
+                    <button type="button" id="btnSave" class="btn btn-primary">@L("Save")</button>
+                    <button type="button" id="btnCancel" class="btn btn-danger">@L("Cancel")</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

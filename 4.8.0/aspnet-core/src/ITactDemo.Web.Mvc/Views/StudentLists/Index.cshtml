@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ITactDemo.Web.Models.StudentLists.StudentListViewModel>
+
+@section Scripts
+    {
+    <environment names="Development">
+        <script src="~/view-resources/Views/StudentList/Index.js"></script>
+    </environment>
+}
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="body">
+                <form name="StudentListForm" asp-controller="StudentLists" asp-action="Index" method="post">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>@L("ExcelFile")</label>
+                            <input type="file" name="File" id="fileupload" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" name="Upload" value="Upload" id="btnUpload" class="btn btn-primary">Upload</button>
+
+                        </div>
+                        <div id="PrintExcel"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

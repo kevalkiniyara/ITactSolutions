@@ -1,0 +1,23 @@
+﻿@using ITactDemo.Orders
+@using Abp.Application.Services.Dto
+@model ITactDemo.Web.Models.Orders.CreateOrUpdateOrderViewModel
+
+@await Html.PartialAsync("_SelectLanguagePartial")
+
+<div class="col-md-12">
+    <form asp-controller="Languages" asp-action="Contact" method="post">
+        <div class="form-group row">
+            <div class="col-md-6">
+                <label>@L("OrderNumber")</label>
+                <input type="text" name="OrderName" class="form-control" />
+
+            </div>
+            <div class="col-md-6">
+                <label>@L("Description")</label>
+                <input type="text" name="Description" class="form-control" />
+            </div>
+        </div>
+        <button type="button" class="btn btn-success">Save</button>
+        <button type="button" class="btn btn-danger">Cancel</button>
+    </form>
+</div>

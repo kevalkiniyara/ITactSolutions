@@ -1,0 +1,232 @@
+﻿@section scripts
+    {
+    <environment names="Development">
+        <script src="~/view-resources/Views/Students/PracticeStudent.js"></script>
+    </environment>
+    <environment names="Staging, Producation">
+
+    </environment>
+}
+
+@section Styles
+    {
+    <environment names="Development">
+        <link href="~/view-resources/Views/Students/PracticeStudent.css" rel="stylesheet" />
+    </environment>
+    <environment names="Staging, Producation">
+
+    </environment>
+}
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>@L("StudentName")</label>
+                            <input type="text" class="form-control" />
+                            <p class="names">Please Enter Your Name</p>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>@L("StudentAddress")</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img  src="~/Uploads/StudentImages/0fcb6768-13da-47f2-b895-5724e8dad39e2007250943.jpg"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="htmlval">Gujarat</p>
+                        </div>
+                        <div class="col-md-6">
+                            <label>@L("StudentHobby")</label>
+                            <input type="checkbox" id="checkbox1" name="Hobbies" value="Playing" class="hobby" />
+                            <label>Playing</label>
+                            <input type="checkbox" id="checkbox1" name="Hobbies" value="Dancing" class="hobby" />
+                            <label>Dancing</label>
+                            <input type="checkbox" id="checkbox1" name="Hobbies" value="Reading" class="hobby" />
+                            <label>Reading</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>@L("CallBack")</label>
+                            <p class="callval">Itact-Solutions,Surat</p>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="blurFocus" type="text"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>@L("Profession")</label>
+                            <select class="form-control" name="Profession" id="profession">
+                                <option>Select</option>
+                                <option>Employee</option>
+                                <option>Student</option>
+                                <option>Worker</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <p id="doubleclick">Double Click function</p>
+                            <p id="delegate">Delegate</p>
+                            
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p onmouseover="getRelatedElement(event)">Mouse over this paragraph.</p>    
+                        </div>
+                        <div class="col-md-6">
+                            <p id="resultP">This is the Text</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p id="targetval">this is paragraph</p>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="whichval"type="text"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input id="keydown" type="text" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>MouseUp</label>
+                            <input type="text" id="mouse" />
+                        </div>
+                        <div class="col-md-3">
+                            <labl>mouseUp</labl>
+                            <input type="text" id="mouseUp" />
+                        </div>
+                        <div class="col-md-3">
+                            <label>mouseEnter</label>
+                            <text id="mouseenter">Hello world</text>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input id="select" type="text" value="Hello World" />
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" />
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" id="btntoggle">save</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="text" value="hello keval" id="copyval"/>
+                        </div>
+                    </div>
+
+                    <button id="AddClass" class="btn btn-info">Add Class</button>
+                    <button id="AddAttr" class="btn btn-info">Add Attribute</button>
+                    <button id="HasClass" class="btn btn-info">Has Class</button>
+                    <button id="HtmlValue" class="btn btn-info">Html Class</button>
+                    <button id="PropValue" class="btn btn-info">Properties Class</button>
+                    <button id="RemoveAttr" class="btn btn-info">Remove Attr Class</button>
+                    <button id="CallBackfun" class="btn btn-info">CallBack Event</button>
+                    <button id="ChangeFunction" class="btn btn-info">Change Event</button>
+
+                    <div class="row">&nbsp;</div>
+                    <button id="DefaultPrevent" class="btn btn-info">Check Prevent</button>
+                    <button id="Result" class="btn btn-info">Check Result</button>
+                    <button id="target" class="btn btn-info">Check Target</button>
+                    <button id="which" class="btn btn-info">Check Which</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label id="clonevalue">Keval kiniyara</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>this is Itact-Solutions</p>
+                        <p>this is It Company</p>
+                    </div>
+                </div>
+
+                <button type="button" id="clonefun" class="btn btn-success">Clone Text</button>
+                <button type="button" id="wrapfun1" class="btn btn-success">Wrap Text</button>
+                <button type="button" id="wrapfun2" class="btn btn-success">UnWrap Text</button>
+                <button type="button" id="wrapfun3" class="btn btn-success">WrapAll Text</button>
+                <button type="button" id="wrapfun4" class="btn btn-success">WrapInner Text</button>
+                <button type="button" id="appendfun" class="btn btn-success">append Text</button>
+                <button type="button" id="appendTofun" class="btn btn-success">appendTo Text</button>
+                <button type="button" id="prependfun" class="btn btn-success">Prepend Text</button>
+                <button type="button" id="prependTofun" class="btn btn-success">PrependTo Text</button>
+
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+                <button type="button" id="textfun" class="btn btn-success">Text</button>
+                <button type="button" id="afterfun" class="btn btn-success">AfterText</button>
+                <button type="button" id="beforefun" class="btn btn-success">BeforeText</button>
+                <button type="button" id="inserbeforefun" class="btn btn-success">insert Before</button>
+                <button type="button" id="insertafterfun" class="btn btn-success">Insert After</button>
+                <button type="button" id="detachfun" class="btn btn-success">Detach</button>
+                <button type="button" id="emptyfun" class="btn btn-success">Empty</button>
+                <button type="button" id="removefun" class="btn btn-success">Remove</button>
+                <button type="button" id="replacefun" class="btn btn-success">Replace</button>
+                <button type="button" id="cssfun" class="btn btn-success">CssStyle</button>
+                <button type="button" id="paramfun" class="btn btn-success">Param</button>
+
+                
+            </div>  
+            
+
+        </div>
+     
+    </div>    
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul id="orderList" class="Values">
+                        <li>Tea</li>
+                        <li>Milk</li>
+                        <li>Water</li>
+                    </ul>
+                    <button type="button" class="btn btn-info" id="btnOrder">ListButton</button>
+                    <button type="button" class="btn btn-info" id="hasAt">Attribute</button>
+                    <button type="button" class="btn btn-info" id="hasAtChild">ChildNode</button>
+                    <button type="button" class="btn btn-info" id="getId">IdValue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

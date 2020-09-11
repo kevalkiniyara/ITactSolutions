@@ -1,0 +1,189 @@
+﻿@using ITactDemo.Employees
+@using Abp.Application.Services.Dto
+@model ITactDemo.Web.Models.Employees.CreateOrUpdateEmployeeViewModel
+
+
+
+@section Scripts
+    {
+<environment names="Development">
+    <script src="~/lib/chosen/chosen.jquery.min.js"></script>
+    <script src="~/lib/chosen/chosen.proto.min.js"></script>
+    <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+    <script src="~/view-resources/Views/Employees/_CreateOrUpdateEmployee.js"></script>
+</environment>
+    <environment names="Staging, Production">
+
+    </environment>
+}
+
+@section Styles
+{
+    <environment names="Development">
+        <link href="~/lib/chosen/chosen.min.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+
+    </environment>
+    <environment names="Staging, Production">
+
+    </environment>
+}
+
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="body">
+                <form name="EmployeeForm">
+                    @Html.Hidden("Id", Model.Employee.Id, new { @id = "Id" })
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="firstName">@L("FirstName") <span class="text-danger">*</span></label>
+                            @Html.TextBox("FirstName", Model.Employee.FirstName, new { @class = "form-control" })
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="lastName">@L("LastName")</label>
+                            @Html.TextBox("LastName", Model.Employee.LastName, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="email">@L("Email")</label>
+                            @Html.TextBox("Email", Model.Employee.Email, new { @class = "form-control", })
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="phoneNumber">@L("PhoneNumber")<span class="text-danger">*</span></label>
+                            @Html.TextBox("PhoneNumber", Model.Employee.PhoneNumber, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="BirthDate">@L("BirthDate")</label>
+                            <input type="text" id="datepicker" name="BirthDate" value="@Model.Employee.BirthDate" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="Standard">@L("Standard")<span class="text-danger">*</span></label>
+                            @Html.DropDownList("Profession", Model.ProfessionList.Select(i => i.ToSelectListItem()), new { @class = "form-control", @required = "required" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <label for="Gender">@L("Gender")</label>
+
+                            <input type="radio" id="male" name="Gender" value="Male" class="md-radiobtn" @(Model.Employee.Gender == "Male" ? "checked=\"checked\"" : "") checked>
+                            <label for="male">Male</label>
+
+                            <input type="radio" id="female" name="Gender" value="Female" class="md-radiobtn" @(Model.Employee.Gender == "Female" ? "checked=\"checked\"" : "")>
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label for="HobbyId">@L("HobbyId")</label>
+                            @foreach (var hobby in Model.HobbyList)
+                            {
+                                <div class="form-check">
+                                    <input type="checkbox" name="HobbyId" id="hobbyId_@hobby.Value" value="@hobby.Value" class="form-control chkHobbies" @(hobby.IsSelected ? "checked=\"checked\"" : "") />
+                                    <label class="form-check-label" for="hobbyId_@hobby.Value">@hobby.DisplayText</label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label for="Country">@L("Country")</label>
+                            @Html.DropDownList("CountryId", Model.CountryList.Select(i => i.ToSelectListItem()), "Select Country", new { @id = "Country", @class = "form-control" })
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="State">@L("State")</label>
+                            @if (Model.Employee.Id > 0)
+                            {
+                                @Html.DropDownList("StateId", Model.StateList.Select(i => i.ToSelectListItem()), "Select State", new { @id = "StateId", @class = "form-control" })
+                            }
+                            else
+                            {
+                                <select id="State" name="StateId" class="form-control"></select>
+                            }
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="City">@L("City")</label>
+                            @if (Model.Employee.Id > 0)
+                            {
+                                @Html.DropDownList("CityId", Model.CityList.Select(i => i.ToSelectListItem()), "Select City", new { @id = "CityId", @class = "form-control" })
+                            }
+                            else
+                            {
+                                <select id="City" name="CityId" class="form-control"></select>
+                            }
+                        </div>
+                        @*<div class="form-group row">
+                            <div class="col-md-4">
+                                @Html.DropDownList("CategoryId", Model.CategoryList.Select(i => i.ToSelectListItem()), "Select Category", new { @class = "form-control ddlCategory", @id = "Category" })
+                            </div>
+                            <div class="col-md-4">
+                                <select id="ItemId" name="ItemId" class="form-control"></select>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="Price" class="form-control price" id="PriceVal" value="" />
+                            </div>
+                        </div>*@
+
+                    </div>
+
+                    <label>@L("OrderItems")</label>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <table id="ordertable" class="table table-bordered" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Category</th>
+                                        <th>Order Item</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="dynamic-items"></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th></th>
+                                        <th colspan="1">
+                                            <label>@L("TotalAmount")</label>
+                                        </th>
+                                        <th class="totalamount"></th>
+                                        <th colspan="4">
+                                            <button type="button" class="add-item btn btn-xs btn-info pull-right"><i class="fa fa-plus"></i></button>
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+                <table id="template" class="hidden">
+                    <tr id="itemTemplate" class="item">
+                        <td></td>
+                        <td>
+                            @Html.DropDownList("CategoryId", Model.CategoryList.Select(i => i.ToSelectListItem()), "Select Category", new { @class = "form-control ddlCategory", @id = "Category" })
+                        </td>
+                        <td>
+                            <select id="ItemId" name="ItemId" class="form-control items"></select>
+                        </td>
+                        <td>
+                            <input type="text" name="Price" class="form-control price" value="" />
+                        </td>
+                        <td>
+                            <button type="button" class="remove-item btn btn-sm btn-danger"><i class="fa fa-remove"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

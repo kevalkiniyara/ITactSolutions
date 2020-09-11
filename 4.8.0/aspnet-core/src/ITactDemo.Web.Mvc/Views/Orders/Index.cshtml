@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@section Styles
+{
+<environment names="Development">
+    <link href="~/lib/jquery-ui/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/lib/jqgrid/css/ui.jqgrid.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+</environment>
+    <environment names="Staging,Production">
+
+    </environment>
+}
+
+@section scripts
+{
+    <environment names="Development">
+
+        <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+        <script src="~/view-resources/Views/Orders/Index.js"></script>
+        <script src="~/lib/highcharts/highcharts.js"></script>
+        <script src="~/lib/highcharts/modules/exporting.js"></script>
+        <script src="~/lib/highcharts/modules/export-data.js"></script>
+        <script src="~/lib/highcharts/modules/accessibility.js"></script>
+
+        <script src="~/lib/highcharts/modules/data.js"></script>
+        <script src="~/lib/highcharts/modules/series-label.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/Orders/Index.min.js"></script>
+    </environment>
+}
+
+
+<div class="row clearfix">
+    <div class="card">
+        <div class="header">
+            <h2>
+                @L("Order")
+            </h2>
+        </div>
+        <div class="jqgrid" >
+            
+                <table id="order"></table>
+                <div id="orderPager"></div>
+            
+        </div>
+        <div id="dialog" title="Order-Graph">
+            <div id="container"></div>
+        </div>
+        <div>
+            <button id="CreateOrder" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right"><i class="fa fa-plus"></i></button>
+        </div>
+    </div>
+</div>

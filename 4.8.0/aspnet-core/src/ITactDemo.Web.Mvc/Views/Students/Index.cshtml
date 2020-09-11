@@ -1,0 +1,38 @@
+﻿@using ITactDemo.Web.Models.Common.Modals
+@using ITactDemo.Students;
+@using Abp.Application.Services.Dto
+@using ITactDemo.Web.Models.Students
+@model ITactDemo.Web.Models.Students.StudentListViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+@section scripts
+    {
+    <environment names="Development">
+        <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+        <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+        <script src="~/view-resources/Views/Students/Index.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/view-resources/Views/Students/Index.min.js" asp-append-version="true" />
+    </environment>
+}
+
+<div class="row clearfix">
+    <div>
+        <div class="card">
+            <div class="header">
+                <h2>
+                    @L("Student")
+                </h2>
+            </div>
+            <div class="jqgrid">
+                <table id="student"></table>
+                <div id="studentPager"></div>
+            </div>
+            <div>
+                <button id="CreateNewStudent" class="btn btn-primary btn-circle waves-effect waves-circle waves-float pull-right"><i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

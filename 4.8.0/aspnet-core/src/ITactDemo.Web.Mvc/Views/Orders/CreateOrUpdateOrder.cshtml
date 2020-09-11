@@ -1,0 +1,127 @@
+﻿@using ITactDemo.Orders
+@using Abp.Application.Services.Dto
+@model ITactDemo.Web.Models.Orders.CreateOrUpdateOrderViewModel
+
+@section styles
+    {
+<environment names="Development">
+    <link href="~/lib/jquery-loading/src/loading.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="~/lib/chosen/chosen.min.css" rel="stylesheet" />
+</environment>
+    <environment names="Staging,Production">
+
+    </environment>
+}
+
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/lib/jquery-loading/src/loading.js"></script>
+        <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+        <script src="~/lib/chosen/chosen.jquery.min.js"></script>
+        <script src="~/lib/numeral/min/numeral.min.js"></script>
+        <script src="~/view-resources/Views/Orders/_CreateOrUpdateOrder.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/Orders/_CreateOrUpdateOrder.min.js"></script>
+    </environment>
+}
+<div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="body">
+                    <div>
+                        <img src="~/Uploads/ItemsImages/1_9EBHIOzhE1XfMYoKz1JcsQ.gif" id="imgloading" style="align-content:center" hidden />
+                    </div>
+                    <form name="OrderForm" id="orderData">
+                        @Html.Hidden("Id", Model.Order.Id, new { @id = "id" })
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <label>@L("OrderNumber")</label>
+                                        @Html.TextBox("OrderNumber", Model.Order.OrderNumber, new { @class = "form-control"})
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <label>@L("OrderDate")<span class="text-danger">*</span></label>
+                                        @Html.TextBox("OrderDate", Model.Order.OrderDate, new { @id = "orderdatepicker", @class = "form-control", @required = "required" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <label>@L("Description")</label>
+                                        @Html.TextArea("Description", Model.Order.Description, new { @class = "form-control", @maxlength = Order.MaxNameLength })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">&nbsp;</div>
+
+                        <label>@L("Items")</label>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <table id="ordertable" class="table table-bordered" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Category</th>
+                                            <th>Item</th>
+                                            <th style="text-align:right">Price</th>
+                                            <th>Image</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="dynamic-items"></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+
+                                            <th class="totalamount"></th>
+                                            <th colspan="4">
+                                                <button type="button" class="add-item btn btn-xs btn-info pull-right"><i class="fa fa-plus"></i></button>
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <button type="button" id="btnSave" class="btn btn-success">@L("Save")</button>
+                        <button type="button" id="btnSaveSP" class="btn btn-success">@L("Save")</button>
+                        <button type="button" id="btnCancel" class="btn btn-danger">@L("Cancel")</button>
+                    </form>
+
+                        <table id="template" class="hidden">
+                            <tr id="itemTemplate" class="item">
+                                <td></td>
+                                <td>
+                                    @Html.DropDownList("CategoryId", Model.CategoryList.Select(i => i.ToSelectListItem()), "Select Category", new { @class = "form-control ddlCategory", @id = "Category" })
+                                </td>
+                                <td>
+                                    <select id="ItemId" name="ItemId" class="form-control items"></select>
+                                </td>
+                                <td>
+                                    <input type="text" name="Price" class="form-control price" style="text-align:right" value="" />
+                                </td>
+                                <td>
+                                    <img src="" id="Image" name="Image" class="image" value="" height="" width="" />
+                                </td>
+                                <td>
+                                    <button type="button" class="remove-item btn btn-sm btn-danger"><i class="fa fa-remove"></i></button>
+                                </td>
+                            </tr>
+                        </table>
+                    
+                </div>
+            </div>
+        </div>
+</div>

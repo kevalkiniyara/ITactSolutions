@@ -1,0 +1,44 @@
+﻿@section styles
+    {
+    <environment names="Development">
+        <link href="~/lib/jquery-ui/themes/base/jquery-ui.css" rel="stylesheet" />
+       @* <link href="~/lib/Flot/examples/shared/jquery-ui/jquery-ui.min.css" rel="stylesheet" />*@
+    </environment>
+}
+
+@section scripts
+    {
+    <environment names="Development">
+        <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+        <script src="~/lib/highcharts/highcharts.js"></script>
+        <script src="~/lib/highcharts/modules/exporting.js"></script>
+        <script src="~/lib/highcharts/modules/export-data.js"></script>
+        <script src="~/lib/highcharts/modules/accessibility.js"></script>
+
+        <script src="~/lib/highcharts/modules/data.js"></script>
+        <script src="~/lib/highcharts/modules/series-label.js"></script>
+        <script src="~/view-resources/Views/Orders/_OrderGraph.js" asp-append-version="true"></script>
+    </environment>
+}
+<div id="container"></div>
+
+<div id="dialog" title="Item-List:-">
+    <div class="jqgrid1">
+        <table id="item"></table>
+        <div id="itemPager"></div>
+
+    </div>
+</div>
+@*<div class="modal fade"  role="dialog">
+    <div class="modal-dialog" id="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <table id="item"></table>
+                <div id="itemPager"></div>
+            </div>
+        </div>
+    </div>
+</div>*@

@@ -1,0 +1,19 @@
+﻿.addColor{
+    font-size:150%;
+    color:red
+}
+.wrapColor{
+    background-color:aqua;
+}
+.body{
+    background-color:aqua
+}
+input{
+    color:white
+}
+#targetval{
+    color:blue
+}
+.callval{
+    color:darkorange
+}
